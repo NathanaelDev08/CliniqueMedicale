@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clinique Médicale - Transformation et Santé</title>
+    <!-- Font Awesome pour les icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* En-tête et Navigation */
+        header {
+            background: linear-gradient(135deg, #2C3E50 0%, #3498DB 100%);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #F1C40F;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #F1C40F;
+        }
+
+        /* Section Hero */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3.8rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease 0.4s both;
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+        }
+
+        /* Sections communes */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #2C3E50;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(135deg, #2C3E50 0%, #3498DB 100%);
+            border-radius: 2px;
+        }
+
+        /* Cartes de services */
+        .features {
+            background: #f8f9fa;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            border-bottom: 4px solid transparent;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-10px);
+            border-bottom: 4px solid #3498DB;
+            box-shadow: 0 15px 30px rgba(52, 152, 219, 0.2);
+        }
+
+        .feature-item h3 {
+            color: #2C3E50;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .feature-item h3 i {
+            color: #3498DB;
+            font-size: 1.8rem;
+        }
+
+        .feature-item ul {
+            list-style: none;
+        }
+
+        .feature-item li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.8rem;
+            position: relative;
+        }
+
+        .feature-item li:before {
+            content: "✓";
+            color: #3498DB;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Section Résultats */
+        .track-record {
+            background: linear-gradient(135deg, #2C3E50 0%, #3498DB 100%);
+            color: white;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            transition: transform 0.3s;
+        }
+
+        .stat-item:hover {
+            transform: scale(1.05);
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #F1C40F;
+        }
+
+        .stat-label {
+            font-size: 1.2rem;
+            opacity: 0.95;
+        }
+
+        /* Services médicaux */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            text-align: center;
+            border: 1px solid #eee;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(52, 152, 219, 0.2);
+        }
+
+        .service-card i {
+            font-size: 3.5rem;
+            color: #3498DB;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card h3 {
+            color: #2C3E50;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .service-card p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* Témoignages */
+        .testimonials {
+            background: #f8f9fa;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .testimonial-card i {
+            color: #F1C40F;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        .testimonial-card p {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+            color: #3498DB;
+            border-top: 2px solid #f0f0f0;
+            padding-top: 1rem;
+        }
+
+        /* Section CTA */
+        .cta {
+            background: linear-gradient(135deg, #2C3E50 0%, #3498DB 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1.2rem 3.5rem;
+            background: white;
+            color: #2C3E50;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .cta-button:hover {
+            transform: scale(1.1);
+            background: #F1C40F;
+            color: #2C3E50;
+        }
+
+        /* Pied de page */
+        footer {
+            background: #1a2634;
+            color: white;
+            padding: 4rem 0 1rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1.5rem;
+            color: #F1C40F;
+            font-size: 1.3rem;
+        }
+
+        .footer-section p {
+            margin-bottom: 0.8rem;
+            color: #ccc;
+        }
+
+        .footer-section i {
+            margin-right: 0.8rem;
+            color: #F1C40F;
+            width: 20px;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #F1C40F;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 3rem;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #888;
+        }
+
+        .footer-bottom a {
+            color: #F1C40F;
+            text-decoration: none;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Design Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.3rem;
+            }
+            
+            .hero .subtitle {
+                font-size: 1rem;
+                padding: 1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta h2 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Menu mobile simplifié */
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- En-tête -->
+    <header>
+        <nav>
+            <div class="logo">Clinique<span>Médicale</span></div>
+            <div class="mobile-menu"><i class="fas fa-bars"></i></div>
+            <ul class="nav-links">
+                <li><a href="#accueil">Accueil</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#a-propos">À propos</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#rendez-vous" style="background: #F1C40F; color: #2C3E50; padding: 0.5rem 1rem; border-radius: 5px;">Rendez-vous</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Section Hero -->
+    <section id="accueil" class="hero">
+        <div class="hero-content">
+            <h1>Transformer des Vies, Restaurer Votre Santé</h1>
+            <p>Nous Offrons les Meilleurs Soins et Services aux Patients</p>
+            <div class="subtitle">
+                Notre bilan parle de lui-même. De nombreuses personnes ont choisi notre centre médical 
+                et ont vécu des expériences positives et transformatrices.
+            </div>
+        </div>
+    </section>
+
+    <!-- Domaines d'intervention -->
+    <section id="services" class="features">
+        <div class="container">
+            <h2 class="section-title">Nous Intervenons Dans Différents Domaines</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <h3><i class="fas fa-history"></i> Expérience Solide</h3>
+                    <ul>
+                        <li>Notre équipe est dédiée à fournir des soins d'excellence</li>
+                        <li>Nous nous engageons à offrir le meilleur traitement possible à chaque patient</li>
+                        <li>Plus de 25 ans d'expérience dans le domaine médical</li>
+                    </ul>
+                </div>
+                <div class="feature-item">
+                    <h3><i class="fas fa-stethoscope"></i> Services Complets</h3>
+                    <ul>
+                        <li>Nous offrons une large gamme de services pour répondre à vos besoins</li>
+                        <li>Des consultations de routine aux interventions complexes</li>
+                        <li>Service d'urgence disponible 24h/24 et 7j/7</li>
+                    </ul>
+                </div>
+                <div class="feature-item">
+                    <h3><i class="fas fa-wheelchair"></i> Accessibilité</h3>
+                    <ul>
+                        <li>Nous nous efforçons de rendre les soins de santé accessibles à tous</li>
+                        <li>Soins à domicile et téléconsultations disponibles</li>
+                        <li>Plusieurs locations et stationnement gratuit</li>
+                    </ul>
+                </div>
+                <div class="feature-item">
+                    <h3><i class="fas fa-user-md"></i> Professionnels Qualifiés</h3>
+                    <ul>
+                        <li>Notre équipe est composée de professionnels hautement qualifiés</li>
+                        <li>Des années d'expérience et d'expertise à votre service</li>
+                        <li>Formation continue et veille technologique</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Résultats -->
+    <section class="track-record">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Notre Bilan Parle de Lui-Même</h2>
+            <p style="text-align: center; font-size: 1.3rem; margin-bottom: 3rem; color: rgba(255,255,255,0.9);">
+                De nombreuses personnes ont choisi notre centre médical et ont vécu des expériences positives et transformatrices.
+            </p>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">50 000+</div>
+                    <div class="stat-label">Patients Traités</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">Taux de Satisfaction</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">25+</div>
+                    <div class="stat-label">Années d'Expérience</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">150+</div>
+                    <div class="stat-label">Médecins Experts</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Spécialités Médicales -->
+    <section class="services">
+        <div class="container">
+            <h2 class="section-title">Nos Spécialités Médicales</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fas fa-heartbeat"></i>
+                    <h3>Cardiologie</h3>
+                    <p>Soins cardiaques experts avec technologie moderne et cardiologues expérimentés.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-brain"></i>
+                    <h3>Neurologie</h3>
+                    <p>Soins neurologiques complets pour toutes les pathologies.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-child"></i>
+                    <h3>Pédiatrie</h3>
+                    <p>Soins spécialisés pour enfants dans un environnement adapté.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-bone"></i>
+                    <h3>Orthopédie</h3>
+                    <p>Traitements avancés pour les problèmes osseux et articulaires.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-female"></i>
+                    <h3>Gynécologie</h3>
+                    <p>Suivi complet de la santé féminine à tous les âges.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-eye"></i>
+                    <h3>Ophtalmologie</h3>
+                    <p>Soins de la vue et chirurgies oculaires de pointe.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Témoignages -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">Ce Que Disent Nos Patients</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <i class="fas fa-quote-right"></i>
+                    <p>"Les soins que j'ai reçus à la Clinique Médicale étaient exceptionnels. Les médecins et infirmières ont été professionnels et bienveillants."</p>
+                    <div class="testimonial-author">- Marie Dubois</div>
+                </div>
+                <div class="testimonial-card">
+                    <i class="fas fa-quote-right"></i>
+                    <p>"Après mon opération, je me sens complètement transformée. Merci à toute l'équipe pour votre dévouement."</p>
+                    <div class="testimonial-author">- Sophie Bernard</div>
+                </div>
+                <div class="testimonial-card">
+                    <i class="fas fa-quote-right"></i>
+                    <p>"L'accessibilité et la qualité des soins sont incomparables. Je recommande vivement ce centre médical."</p>
+                    <div class="testimonial-author">- Philippe Martin</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Appel à l'action -->
+    <section class="cta">
+        <div class="container">
+            <h2>Nous Sommes Différents Pour Protéger Votre Santé</h2>
+            <p>Découvrez la différence des soins personnalisés et bienveillants</p>
+            <a href="#rendez-vous" class="cta-button">Prendre Rendez-vous</a>
+        </div>
+    </section>
+
+    <!-- Pied de page -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Clinique Médicale</h3>
+                <p>Transformer des vies grâce à des soins de santé exceptionnels.</p>
+                <p><i class="fas fa-phone"></i> +33 1 23 45 67 89</p>
+                <p><i class="fas fa-envelope"></i> contact@clinique-medicale.fr</p>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Rue de la Santé, 75001 Paris</p>
+            </div>
+            <div class="footer-section">
+                <h3>Liens Rapides</h3>
+                <p><a href="#accueil">Accueil</a></p>
+                <p><a href="#services">Nos Services</a></p>
+                <p><a href="#a-propos">À Propos</a></p>
+                <p><a href="#contact">Contact</a></p>
+                <p><a href="#urgences">Urgences 24h/24</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>Horaires d'Ouverture</h3>
+                <p>Lundi - Vendredi: 8h00 - 20h00</p>
+                <p>Samedi: 9h00 - 17h00</p>
+                <p>Dimanche: Urgences uniquement</p>
+                <p><i class="fas fa-ambulance"></i> Urgences: 15</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Clinique Médicale. Tous droits réservés. | Thème par <a href="#">DownloadNewThemes.com</a></p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem;">Nous sommes différents pour protéger votre santé</p>
+        </div>
+    </footer>
+</body>
+</html>
